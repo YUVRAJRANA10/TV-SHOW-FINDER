@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="app.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1>Tv show Finder</h1>
+    <form id="searchform">
+        <input id type="text" placeholder="Tv Show Title" name="query">
+        <button>Search</button>
+        <button type="button" id="voiceSearchButton">🎤</button>
+        <div id="voiceSearchDialog" class="hidden">
+            <div class="dialog-content">
+                <p>Listening...</p>
+            </div>
+        </div>
+    </form>
+    <div class="marquee">
+        <div class="marquee-content">
+            <!-- Add your images or content -->
+            <img src="https://dnm.nflximg.net/api/v6/BvVbc2Wxr2w6QuoANoSpJKEIWjQ/AAAAQXR1_AVCT4BcG1GxnrAELUtDuGoLQQobwg-bRqx5C_lw5F3WpsATjxkhEvvZskGEs07rlqvhXDxkM2JVp-DEQWoW2ZIQFNwsUvrDdUqqKawDMsy86vKf3YL_RVg_6-HIYdON6Modq2t0bMPYqcAyPqCUk_8.jpg?r=5fb" alt="Image 1">
+            <img src="https://dnm.nflximg.net/api/v6/BvVbc2Wxr2w6QuoANoSpJKEIWjQ/AAAAQXR1_AVCT4BcG1GxnrAELUtDuGoLQQobwg-bRqx5C_lw5F3WpsATjxkhEvvZskGEs07rlqvhXDxkM2JVp-DEQWoW2ZIQFNwsUvrDdUqqKawDMsy86vKf3YL_RVg_6-HIYdON6Modq2t0bMPYqcAyPqCUk_8.jpg?r=5fb" alt="Image 2">
+            <img src="https://dnm.nflximg.net/api/v6/BvVbc2Wxr2w6QuoANoSpJKEIWjQ/AAAAQXR1_AVCT4BcG1GxnrAELUtDuGoLQQobwg-bRqx5C_lw5F3WpsATjxkhEvvZskGEs07rlqvhXDxkM2JVp-DEQWoW2ZIQFNwsUvrDdUqqKawDMsy86vKf3YL_RVg_6-HIYdON6Modq2t0bMPYqcAyPqCUk_8.jpg?r=5fb" alt="Image 3">
+            <!-- Repeat images for a seamless effect -->
+            <img src="https://dnm.nflximg.net/api/v6/BvVbc2Wxr2w6QuoANoSpJKEIWjQ/AAAAQXR1_AVCT4BcG1GxnrAELUtDuGoLQQobwg-bRqx5C_lw5F3WpsATjxkhEvvZskGEs07rlqvhXDxkM2JVp-DEQWoW2ZIQFNwsUvrDdUqqKawDMsy86vKf3YL_RVg_6-HIYdON6Modq2t0bMPYqcAyPqCUk_8.jpg?r=5fb" alt="Image 1">
+            <img src="https://dnm.nflximg.net/api/v6/BvVbc2Wxr2w6QuoANoSpJKEIWjQ/AAAAQXR1_AVCT4BcG1GxnrAELUtDuGoLQQobwg-bRqx5C_lw5F3WpsATjxkhEvvZskGEs07rlqvhXDxkM2JVp-DEQWoW2ZIQFNwsUvrDdUqqKawDMsy86vKf3YL_RVg_6-HIYdON6Modq2t0bMPYqcAyPqCUk_8.jpg?r=5fb" alt="Image 2">
+            <img src="https://dnm.nflximg.net/api/v6/BvVbc2Wxr2w6QuoANoSpJKEIWjQ/AAAAQXR1_AVCT4BcG1GxnrAELUtDuGoLQQobwg-bRqx5C_lw5F3WpsATjxkhEvvZskGEs07rlqvhXDxkM2JVp-DEQWoW2ZIQFNwsUvrDdUqqKawDMsy86vKf3YL_RVg_6-HIYdON6Modq2t0bMPYqcAyPqCUk_8.jpg?r=5fb" alt="Image 3">
+        </div>
+    </div>
+    <div id="imagecontainer"></div>  
+    <div id="graphbox">
+        <div class="box">
+            <h3>RATINGS </h3>
+            <canvas id="showChart" width="400" height="400"></canvas>
+        </div>
+    </div>
+    <div id="quote">
+        <p>"You either die a hero, or you live long enough to see yourself become the villain." - Christopher Nolan</p>
+    </div>
+    <div id="bgm-icon">
+        <img src="interstellar.png" alt="Interstellar BGM" id="bgm-icon-img">
+        
+    </div>
+    <audio id="bgm-audio" src="interstellar.mp3" loop></audio>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <script src="new2.js"></script>
+    <script src="bgm.js"></script>
+</body>
+</html>

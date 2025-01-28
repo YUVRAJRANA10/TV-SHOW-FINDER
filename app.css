@@ -1,0 +1,341 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: auto; /* Allow scrolling */
+    display: flex;
+    flex-direction: column;
+}
+body.bgm-active h1,
+body.bgm-active h2,
+body.bgm-active h3,
+body.bgm-active button {
+    animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 5px #E50914, 0 0 10px #E50914, 0 0 15px #E50914, 0 0 20px #E50914, 0 0 25px #E50914, 0 0 30px #E50914, 0 0 35px #E50914;
+    }
+    100% {
+        text-shadow: 0 0 10px #FF5733, 0 0 20px #FF5733, 0 0 30px #FF5733, 0 0 40px #FF5733, 0 0 50px #FF5733, 0 0 60px #FF5733, 0 0 70px #FF5733;
+    }
+}
+
+h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3em;
+    text-align: center;
+    margin-top: 20px;
+    color: #E50914; /* Netflix red color */
+    border: 2px solid #E50914; /* Add border */
+    padding: 10px; /* Add padding */
+    background-color: #000; /* Add background color */
+    border-radius: 10px; /* Add border radius */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+}
+h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2em;
+    text-align: center;
+    margin-top: 20px;
+    color: #ffffff; /* Netflix red color */
+    background: rgba(247, 4, 4, 0.27); /* Glassmorphism background */
+    padding: 10px; /* Add padding */
+    border-radius: 10px; /* Add border radius */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Box shadow */
+    backdrop-filter: blur(5.8px); /* Backdrop filter */
+    -webkit-backdrop-filter: blur(5.8px); /* Webkit backdrop filter */
+    border: 1px solid rgba(255, 255, 255, 0.12); /* Border */
+}
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+form input[type="text"] {
+    padding: 10px;
+    font-size: 1em;
+    border: 2px solid #E50914; /* Netflix red color */
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    outline: none;
+}
+
+form button {
+    padding: 10px 20px;
+    font-size: 1em;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #E50914; /* Netflix red color */
+    color: white;
+    cursor: pointer;
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+form button:hover {
+    background-color: #B20710; /* Darker Netflix red color */
+}
+
+form button#voiceSearchButton {
+    padding: 10px 20px;
+    font-size: 1em;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #E50914; /* Netflix red color */
+    color: white;
+    cursor: pointer;
+    font-family: 'Bebas Neue', sans-serif;
+    margin-left: 10px; /* Add margin to separate from search button */
+}
+
+form button#voiceSearchButton:hover {
+    background-color: #B20710; /* Darker Netflix red color */
+}
+
+form button#voiceSearchButton.listening {
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        background-color: #E50914; /* Red */
+    }
+    25% {
+        transform: scale(1.1);
+        background-color: #FF5733; /* Orange */
+    }
+    50% {
+        transform: scale(1);
+        background-color: #FFC300; /* Yellow */
+    }
+    75% {
+        transform: scale(1.1);
+        background-color: #DAF7A6; /* Light Green */
+    }
+    100% {
+        transform: scale(1);
+        background-color: #E50914; /* Red */
+    }
+}
+
+.marquee {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1; /* Ensure it stays behind your content */
+}
+
+.marquee-content {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    animation: marquee 40s linear infinite;
+    white-space: nowrap;
+}
+
+.marquee-content img {
+    height: 100%; /* Images fill the height of the page */
+    flex-shrink: 0; /* Prevent images from shrinking */
+    margin-right: 0; /* No gaps for seamless scrolling */
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+#graphbox {
+    margin-top: 20px;
+    width: 80%; /* Adjust the width as needed */
+    max-width: 600px; /* Set a maximum width */
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(58, 54, 54, 0.27); /* Glassmorphism background */
+    border-radius: 16px; /* Border radius */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Box shadow */
+    backdrop-filter: blur(5.8px); /* Backdrop filter */
+    -webkit-backdrop-filter: blur(5.8px); /* Webkit backdrop filter */
+    border: 1px solid rgba(255, 255, 255, 0.12); /* Border */
+    padding: 20px; /* Add padding for separation */
+    margin-left: auto; /* Center the graph box */
+    margin-right: auto; /* Center the graph box */
+}
+
+#showChart {
+    width: 100% !important;
+    height: auto !important;
+}
+
+#imagecontainer {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#imagecontainer img {
+    margin: 10px;
+    max-width: 200px;
+    border-radius: 10px;
+}
+
+#imagecontainer iframe {
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#voiceSearchDialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#voiceSearchDialog.hidden {
+    display: none;
+}
+
+.dialog-content {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5em;
+}
+
+.show-image {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.show-image:hover {
+    transform: scale(1.05);
+}
+
+.trailer-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.trailer-content {
+    position: relative;
+    background-color: #000000;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.trailer-content iframe {
+    width: 650px;
+    height: 405px;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5em;
+    color: white;
+    cursor: pointer;
+}
+
+.img-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
+.play-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    background-color: #E50914; /* Netflix red color */
+    color: white;
+    cursor: pointer;
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+.play-button:hover {
+    background-color: #B20710; /* Darker Netflix red color */
+}
+#quote {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5em;  
+    text-align: center;
+    margin-top: 20px;
+    color: #E50914; /* Netflix red color */
+    background: rgba(197, 104, 104, 0.27); /* Glassmorphism background */
+    padding: 10px; /* Add padding */
+    border-radius: 10px; /* Add border radius */
+    box-shadow: 0 4px 30px rgba(226, 15, 15, 0.1); /* Box shadow */
+    backdrop-filter: blur(5.8px); /* Backdrop filter */
+    -webkit-backdrop-filter: blur(5.8px); /* Webkit backdrop filter */
+    border: 1px solid rgba(236, 229, 229, 0.12); /* Border */
+}
+
+#bgm-icon {
+    position: fixed;
+    height: 50px;
+    width: 50px;
+    top: 31px;
+    left: 20px;
+    /* border-radius: 50%; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    padding: 5px;
+    background: rgba(136, 132, 132, 0.27); /* Glassmorphism background */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Box shadow */
+    backdrop-filter: blur(5.8px); /* Backdrop filter */
+    -webkit-backdrop-filter: blur(5.8px); /* Webkit backdrop filter */
+    border: 1px solid #f3f1f1; /* Netflix red border */
+    transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    animation: glow 1.5s infinite alternate; /* Continuous glowing effect */
+}
+#bgm-icon:hover {
+    box-shadow: 0 0 15px #E50914, 0 0 20px #E50914, 0 0 25px #E50914, 0 0 30px #E50914;
+}
+#bgm-icon-img {
+    width: 50px;
+    height: 50px;
+    transition: transform .5s ease-in-out;
+}
+
+#bgm-icon.spinning #bgm-icon-img {
+    transform: rotate(360deg);
+}
