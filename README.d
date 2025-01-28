@@ -23,69 +23,11 @@
 
 ---
 
-## Installation & Usage
-
-### Prerequisites
-
-- Node.js and npm installed on your machine
-
-### Steps
-
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/yourusername/my-tv-show-finder.git
-   cd my-tv-show-finder
-   ```
-
-2. **Install Dependencies**:
-   ```bash
-   npm install
-   ```
-
-3. **Configure API Keys**:
-   - Obtain an API key from [TMDb API](https://www.themoviedb.org/documentation/api) or [TVmaze API](https://www.tvmaze.com/api).
-   - Add the API key to your environment variables or directly in the config file.
-
-4. **Run the Server**:
-   ```bash
-   npm start
-   ```
-
-5. **Access the Website**:
-   Open your browser and navigate to `http://localhost:3000`.
-
----
-
-## Screenshots
-
-_Showcase a few examples of the interface here, such as search results, trailers, and analytics._
-
----
-
-## Contributing
-
-We welcome contributions! Please follow these steps to contribute:
-
-1. Fork the repository.
-2. Create a new branch for your feature: `git checkout -b feature-name`.
-3. Commit your changes: `git commit -m 'Add new feature'`.
-4. Push the changes: `git push origin feature-name`.
-5. Submit a pull request.
-
----
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
 ## Contact
 
 For questions or feedback, feel free to reach out:
 
-- **Email**: your-email@example.com
-- **GitHub**: [yourusername](https://github.com/yourusername)
+- **Email**: yuvraj.r0810@gmail.com
 
 ---
 
