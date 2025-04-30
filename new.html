@@ -1,15 +1,47 @@
+\tv\new.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>TV Show Finder</title>
     <link rel="stylesheet" href="app.css">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <!-- Add Three.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/FontLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/geometries/TextGeometry.js"></script>
 </head>
 <body>
-    <h1>Tv show Finder</h1>
+    <div class="header-container">
+        <div class="logo-container">
+            <div class="header-logo">
+                <div class="logo-circle"></div>
+                <div class="logo-text">
+                    <span class="logo-tv">TV</span>
+                    <span class="logo-show">SHOW</span>
+                    <span class="logo-finder">FINDER</span>
+                </div>
+                <div class="logo-strip left-strip">
+                    <div class="perf"></div>
+                    <div class="perf"></div>
+                    <div class="perf"></div>
+                    <div class="perf"></div>
+                    <div class="perf"></div>
+                </div>
+                <div class="logo-strip right-strip">
+                    <div class="perf"></div>
+                    <div class="perf"></div>
+                    <div class="perf"></div>
+                    <div class="perf"></div>
+                    <div class="perf"></div>
+                </div>
+            </div>
+        </div>
+        <h1>Tv show Finder</h1>
+    </div>
     <form id="searchform">
         <input id type="text" placeholder="Tv Show Title" name="query">
         <button>Search</button>
@@ -20,6 +52,30 @@
             </div>
         </div>
     </form>
+    
+    <!-- Mood Selector Feature -->
+    <div class="mood-selector-container">
+        <h2 class="mood-title">SET YOUR MOOD FOR TODAY</h2>
+        <div class="mood-buttons">
+            <button class="mood-button" data-genre="action">ACTION</button>
+            <button class="mood-button" data-genre="comedy">COMEDY</button>
+            <button class="mood-button" data-genre="drama">DRAMA</button>
+            <button class="mood-button" data-genre="sci-fi">SCI-FI</button>
+            <button class="mood-button" data-genre="horror">HORROR</button>
+            <button class="mood-button" data-genre="thriller">THRILLER</button>
+            <button class="mood-button" data-genre="romance">ROMANCE</button>
+            <button class="mood-button" data-genre="fantasy">FANTASY</button>
+        </div>
+    </div>
+    
+    <!-- 3D TV container with info text -->
+    <div id="tv3d-container-wrapper">
+        <div id="tv3d-container"></div>
+        <div class="tv3d-info">
+            <p>Click on elements to interact! The TV updates when you search for shows.</p>
+        </div>
+    </div>
+    
     <div class="marquee">
         <div class="marquee-content">
             <!-- Add your images or content -->
@@ -42,13 +98,11 @@
     <div id="quote">
         <p>"You either die a hero, or you live long enough to see yourself become the villain." - Christopher Nolan</p>
     </div>
-    <div id="bgm-icon">
-        <img src="interstellar.png" alt="Interstellar BGM" id="bgm-icon-img">
-        
-    </div>
-    <audio id="bgm-audio" src="interstellar.mp3" loop></audio>
+    
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <script src="tv3d.js"></script>
+    <script src="tvTrailer.js"></script>
     <script src="new2.js"></script>
-    <script src="bgm.js"></script>
+    <script src="moodSelector.js"></script> <!-- This should be here and spelled correctly -->
 </body>
 </html>

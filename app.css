@@ -26,13 +26,13 @@ h1 {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 3em;
     text-align: center;
-    margin-top: 20px;
     color: #E50914; /* Netflix red color */
     border: 2px solid #E50914; /* Add border */
-    padding: 10px; /* Add padding */
+    padding: 10px 20px; /* Add padding */
     background-color: #000; /* Add background color */
     border-radius: 10px; /* Add border radius */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+    margin: 0; /* Remove default margin */
 }
 h3 {
     font-family: 'Bebas Neue', sans-serif;
@@ -338,4 +338,441 @@ form button#voiceSearchButton.listening {
 
 #bgm-icon.spinning #bgm-icon-img {
     transform: rotate(360deg);
+}
+
+/* Updated 3D TV Container with cinema-themed gray background */
+#tv3d-container {
+    width: 100%;
+    height: 500px;
+    margin: 20px auto;
+    border-radius: 10px;
+    overflow: hidden;
+    /* Theater/cinema-style gray gradient */
+    background: linear-gradient(to bottom, 
+        rgba(30, 30, 30, 0.9), 
+        rgba(20, 20, 20, 0.95), 
+        rgba(10, 10, 10, 1));
+    box-shadow: 0 4px 30px rgba(229, 9, 20, 0.4), 
+                inset 0 0 100px rgba(229, 9, 20, 0.15);
+    position: relative;
+    cursor: grab;
+}
+
+#tv3d-container:active {
+    cursor: grabbing;
+}
+
+/* Theater curtain effect with subtle red accent */
+#tv3d-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at center, rgba(40, 40, 40, 0.3) 30%, rgba(20, 20, 20, 0.7)),
+        repeating-linear-gradient(90deg, 
+            rgba(229, 9, 20, 0.03) 0px, 
+            rgba(229, 9, 20, 0.03) 1px, 
+            transparent 1px, 
+            transparent 4px);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Cinema floor/seat pattern at the bottom */
+#tv3d-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8)),
+                repeating-linear-gradient(90deg, 
+                    rgba(30, 30, 30, 0.8) 0px, 
+                    rgba(30, 30, 30, 0.8) 10px, 
+                    rgba(40, 40, 40, 0.8) 10px, 
+                    rgba(40, 40, 40, 0.8) 20px);
+    pointer-events: none;
+    z-index: 1;
+}
+
+#tv3d-container canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+#tv3d-container-wrapper {
+    position: relative;
+    margin: 20px auto;
+    width: 100%;
+    /* Cinema marquee-style subtle glow */
+    padding: 5px;
+    background: linear-gradient(to right, 
+        rgba(0, 0, 0, 0),
+        rgba(229, 9, 20, 0.15),
+        rgba(0, 0, 0, 0));
+    border-radius: 12px;
+}
+
+.tv3d-info {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(20, 20, 20, 0.8);
+    color: #E50914;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.9em;
+    text-align: center;
+    opacity: 0.9;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    z-index: 3;
+    border: 1px solid rgba(229, 9, 20, 0.4);
+    box-shadow: 0 0 10px rgba(229, 9, 20, 0.3);
+}
+
+.tv3d-info:hover {
+    opacity: 1;
+}
+
+/* Theater spotlight effect */
+@keyframes spotlight {
+    0%, 100% {
+        background-position: 0% 0%;
+    }
+    25% {
+        background-position: 100% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    75% {
+        background-position: 0% 100%;
+    }
+}
+
+#tv3d-container-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 0% 0%, rgba(229, 9, 20, 0.15) 0%, transparent 30%);
+    background-size: 200% 200%;
+    animation: spotlight 15s infinite ease-in-out;
+    pointer-events: none;
+    z-index: 0;
+    border-radius: 12px;
+}
+
+/* Header logo styling to match the 3D TV logo */
+.header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.logo-container {
+    height: 60px;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-logo {
+    position: relative;
+    height: 60px;
+    width: 60px;
+}
+
+.logo-circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    border-radius: 50%;
+    opacity: 0.7;
+}
+
+.logo-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+}
+
+.logo-tv {
+    color: #FFFFFF;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.logo-show {
+    color: #E50914;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    line-height: 1;
+}
+
+.logo-finder {
+    color: #FFFFFF;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.logo-strip {
+    position: absolute;
+    width: 6px;
+    height: 40px;
+    background-color: #E50914;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.7;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 4px 0;
+}
+
+.left-strip {
+    left: -12px;
+}
+
+.right-strip {
+    right: -12px;
+}
+
+.perf {
+    width: 4px;
+    height: 4px;
+    background-color: #000000;
+    border-radius: 50%;
+    margin-left: 1px;
+}
+
+/* Make the logo pulse with a subtle effect */
+@keyframes logoPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.header-logo {
+    animation: logoPulse 3s infinite ease-in-out;
+}
+
+/* Mood Selector Styling */
+.mood-selector-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 15px;
+    background: rgba(30, 30, 30, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(229, 9, 20, 0.4), 
+                inset 0 0 100px rgba(229, 9, 20, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgba(229, 9, 20, 0.3);
+}
+
+.mood-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8em;
+    color: #E50914;
+    margin: 0 0 15px 0;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+    letter-spacing: 2px;
+}
+
+.mood-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.mood-button {
+    padding: 8px 16px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1em;
+    color: white;
+    background-color: #333;
+    border: 1px solid rgba(229, 9, 20, 0.6);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.mood-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(229, 9, 20, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.mood-button:hover {
+    background-color: rgba(229, 9, 20, 0.8);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(229, 9, 20, 0.5);
+}
+
+.mood-button:hover::before {
+    left: 100%;
+}
+
+.mood-button.active {
+    background-color: #E50914;
+    box-shadow: 0 0 15px rgba(229, 9, 20, 0.8);
+}
+
+@media (max-width: 768px) {
+    .mood-button {
+        padding: 6px 12px;
+        font-size: 0.9em;
+    }
+    
+    .mood-title {
+        font-size: 1.5em;
+    }
+}
+
+/* Mood message and suggestion styling */
+#mood-message {
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+    min-height: 40px;
+}
+
+.success-message, .error-message {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2em;
+    margin: 0;
+    padding: 10px;
+    border-radius: 5px;
+    animation: fadeIn 0.5s ease;
+}
+
+.success-message {
+    color: #E50914;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.error-message {
+    color: white;
+    background-color: rgba(229, 9, 20, 0.7);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.mood-loader {
+    width: 100%;
+    height: 4px;
+    background-color: #333;
+    border-radius: 2px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.mood-loader-bar {
+    height: 100%;
+    width: 0;
+    background-color: #E50914;
+    animation: loading 3s ease-in-out forwards;
+}
+
+@keyframes loading {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+
+/* Mood suggestion styling */
+.mood-suggestion {
+    width: 250px;
+    background-color: rgba(20, 20, 20, 0.8);
+    border: 2px solid #E50914;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 20px;
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.4);
+    transform: scale(1);
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.mood-suggestion:hover {
+    transform: scale(1.05);
+}
+
+.mood-suggestion-header {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2em;
+    color: #E50914;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(229, 9, 20, 0.3);
+    margin-bottom: 10px;
+}
+
+.mood-image {
+    width: 100%;
+    border-radius: 5px;
+    display: block;
+    margin: 0 auto;
+}
+
+.mood-show-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5em;
+    color: white;
+    text-align: center;
+    margin: 10px 0 5px 0;
+}
+
+.mood-show-info {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.9em;
+    color: #ccc;
+    text-align: center;
+}
+
+.mood-show-info p {
+    margin: 5px 0;
 }

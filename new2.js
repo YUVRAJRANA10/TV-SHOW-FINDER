@@ -1,3 +1,22 @@
+// Make fetchTrailer globally available
+window.fetchTrailer = async (showName) => {
+    try {
+        const res = await axios.get(`https://www.googleapis.com/youtube/v3/search`, {
+            params: {
+                part: 'snippet',
+                q: `${showName} trailer`,
+                type: 'video',
+                key: 'AIzaSyBbTRzs818idOzniM3bZy_KIyUIkYf767Y' // Replace with your YouTube API key
+            }
+        });
+        const videoId = res.data.items[0].id.videoId;
+        return `https://www.youtube.com/embed/${videoId}`;
+    } catch (error) {
+        console.error("Error fetching trailer:", error);
+        return null;
+    }
+};
+
 const formm = document.querySelector("#searchform");
 const clear = document.querySelector("#imagecontainer");
 const showChartCtx = document.getElementById('showChart').getContext('2d');
@@ -27,25 +46,20 @@ const clearimg = () => {
     clear.innerHTML = '';
 }
 
-const fetchTrailer = async (showName) => {
-    try {
-        const res = await axios.get(`https://www.googleapis.com/youtube/v3/search`, {
-            params: {
-                part: 'snippet',
-                q: `${showName} trailer`,
-                type: 'video',
-                key: 'AIzaSyBbTRzs818idOzniM3bZy_KIyUIkYf767Y' // Replace with your YouTube API key
-            }
-        });
-        const videoId = res.data.items[0].id.videoId;
-        return `https://www.youtube.com/embed/${videoId}`;
-    } catch (error) {
-        console.error("Error fetching trailer:", error);
-        return null;
-    }
-};
-
+// Update the makeimg function to interact with the 3D TV
 const makeimg = async (shows) => {
+    const clear = document.querySelector("#imagecontainer");
+    clear.innerHTML = "";
+    
+    // Update the 3D TV with the first show image if available
+    if (shows.length > 0 && shows[0].show.image) {
+        if (window.updateTVScreen) {
+            window.updateTVScreen(shows[0].show.image.medium);
+            console.log("Updating TV with first show image");
+        }
+    }
+    
+    // Your existing code for creating image containers...
     for (let result of shows) {
         if (result.show.image) {
             const imgContainer = document.createElement('div');
@@ -54,9 +68,18 @@ const makeimg = async (shows) => {
             const img = document.createElement('IMG');
             img.src = result.show.image.medium;
             img.classList.add('show-image');
+            
+            // Add click event to update 3D TV screen when clicking on a show image
+            img.addEventListener('click', () => {
+                if (window.updateTVScreen) {
+                    window.updateTVScreen(result.show.image.medium);
+                    console.log("Updating TV with clicked show image");
+                }
+            });
+            
             imgContainer.appendChild(img);
 
-            const trailerUrl = await fetchTrailer(result.show.name);
+            const trailerUrl = await window.fetchTrailer(result.show.name);
             if (trailerUrl) {
                 const playButton = document.createElement('button');
                 playButton.textContent = 'Play Trailer';
@@ -72,21 +95,28 @@ const makeimg = async (shows) => {
     }
 };
 
+// Update the playTrailer function to use the 3D TV for trailer playback
 const playTrailer = (trailerUrl) => {
-    const trailerModal = document.createElement('div');
-    trailerModal.classList.add('trailer-modal');
-    trailerModal.innerHTML = `
-        <div class="trailer-content">
-            <span class="close-button">&times;</span>
-            <iframe src="${trailerUrl}" width="560" height="315" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-    `;
-    document.body.appendChild(trailerModal);
+    // Check if we can play the trailer on the 3D TV
+    if (window.playTrailerOnTV) {
+        window.playTrailerOnTV(trailerUrl);
+    } else {
+        // Fallback to the original modal if 3D TV player is not available
+        const trailerModal = document.createElement('div');
+        trailerModal.classList.add('trailer-modal');
+        trailerModal.innerHTML = `
+            <div class="trailer-content">
+                <span class="close-button">&times;</span>
+                <iframe src="${trailerUrl}" width="560" height="315" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        `;
+        document.body.appendChild(trailerModal);
 
-    const closeButton = trailerModal.querySelector('.close-button');
-    closeButton.addEventListener('click', () => {
-        document.body.removeChild(trailerModal);
-    });
+        const closeButton = trailerModal.querySelector('.close-button');
+        closeButton.addEventListener('click', () => {
+            document.body.removeChild(trailerModal);
+        });
+    }
 };
 
 const updateChart = (shows) => {
